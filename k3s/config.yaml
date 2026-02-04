@@ -1,0 +1,4 @@
+write-kubeconfig-mode: "0644"
+secrets-encryption: true
+disable:
+  - servicelb
