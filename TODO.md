@@ -1,0 +1,2 @@
+- serivces in ingresses have hard-coded namespace
+- ingress match rule should be configurable

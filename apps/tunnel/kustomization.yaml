@@ -1,0 +1,12 @@
+namespace: default
+
+secretGenerator:
+  - name: tunnel-secrets
+    envs:
+      - .env
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+resources:
+  - deployment.yaml
