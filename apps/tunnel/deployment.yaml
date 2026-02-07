@@ -13,7 +13,7 @@ spec:
         app: cloudflared
     spec:
       containers:
-        - image: cloudflare/cloudflared:latest
+        - image: cloudflare/cloudflared:1818-6658717
           name: cloudflared
           resources:
             requests:
