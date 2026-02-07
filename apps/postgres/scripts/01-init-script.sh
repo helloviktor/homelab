@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -e
+
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
+
+-- Create Miniflux database and user
+CREATE DATABASE $MINIFLUX_DB;
+CREATE USER $MINIFLUX_DB_USER WITH ENCRYPTED PASSWORD '$MINIFLUX_DB_PASSWORD';
+GRANT ALL PRIVILEGES ON DATABASE $MINIFLUX_DB TO $MINIFLUX_DB_USER;
+
+-- Switch into new database
+\connect $MINIFLUX_DB
+
+-- Fix schema ownership & permissions
+ALTER SCHEMA public OWNER TO $MINIFLUX_DB_USER;
+GRANT USAGE, CREATE ON SCHEMA public TO $MINIFLUX_DB_USER;
+
+EOSQL

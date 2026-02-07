@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:18.1-trixie
+          envFrom:
+            - secretRef:
+                name: postgres-secrets
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: postgres-scripts
+              mountPath: /docker-entrypoint-initdb.d
+              readOnly: true
+      volumes:
+        - name: postgres-scripts
+          configMap:
+            name: postgres-scripts
+            items:
+              - path: 01-init-script.sh
+                key: 01-init-script.sh
