@@ -22,12 +22,9 @@ spec:
             limits:
               memory: "128Mi"
               cpu: "500m"
-          env:
-            - name: TUNNEL_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: tunnel-secrets
-                  key: TUNNEL_TOKEN
+          envFrom:
+            - secretRef:
+                name: tunnel-secrets
           command:
             - cloudflared
             - tunnel
