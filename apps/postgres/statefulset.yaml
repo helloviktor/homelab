@@ -1,8 +1,9 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: postgres
 spec:
+  serviceName: postgres
   replicas: 1
   selector:
     matchLabels:
@@ -31,10 +32,18 @@ spec:
             - name: postgres-scripts
               mountPath: /docker-entrypoint-initdb.d
               readOnly: true
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/18/docker
       volumes:
         - name: postgres-scripts
           configMap:
             name: postgres-scripts
-            items:
-              - path: 01-init-script.sh
-                key: 01-init-script.sh
+  volumeClaimTemplates:
+    - metadata:
+        name: postgres-data
+      spec:
+        accessModes:
+          - ReadWriteOncePod
+        resources:
+          requests:
+            storage: 1Gi
