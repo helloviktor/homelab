@@ -12,7 +12,6 @@ spec:
         accessLogs: true
         metrics: true
         tracing: true
-      priority: 10
       services:
         - kind: Service
           name: whoami
