@@ -27,3 +27,12 @@ spec:
           envFrom:
             - secretRef:
                 name: miniflux-secrets
+          livenessProbe:
+            exec:
+              command:
+                - /usr/bin/miniflux
+                - -healthcheck
+                - auto
+            failureThreshold: 1
+            initialDelaySeconds: 10
+            periodSeconds: 10
