@@ -10,3 +10,7 @@ spec:
     logs:
       access:
         enabled: true
+    metrics:
+      prometheus:
+        service:
+          enabled: true
