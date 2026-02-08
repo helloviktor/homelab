@@ -18,3 +18,5 @@ spec:
           namespace: default
           passHostHeader: true
           port: 8080
+      middlewares:
+        - name: rate-limit
