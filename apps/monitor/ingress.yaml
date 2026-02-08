@@ -1,20 +1,19 @@
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
-  name: prometheus
+  name: monitor
 spec:
   entryPoints:
     - web
   routes:
     - kind: Rule
-      match: Host(`playground.hefler.dev`) && Path(`/metrics`)
+      match: Host(`playground.hefler.dev`) && PathPrefix(`/monitor`)
       observability:
         accessLogs: true
         metrics: true
         tracing: true
       services:
         - kind: Service
-          name: prometheus
-          namespace: default
+          name: grafana
           passHostHeader: true
           port: 80

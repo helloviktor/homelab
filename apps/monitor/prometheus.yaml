@@ -3,8 +3,8 @@ global:
   evaluation_interval: 15s
 
 scrape_configs:
-  - job_name: "traefik"
+  - job_name: "traefik-metrics"
     metrics_path: /metrics
     scheme: http
     static_configs:
-      - targets: ["traefik.kube-system.svc.cluster.local:9100"]
+      - targets: ["traefik-metrics.kube-system.svc.cluster.local:9100"]

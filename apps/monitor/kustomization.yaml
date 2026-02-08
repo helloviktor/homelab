@@ -7,12 +7,16 @@ configMapGenerator:
   - name: prometheus-config
     files:
       - prometheus.yaml
+  - name: grafana-config
+    files:
+      - grafana.ini
 
 generatorOptions:
   disableNameSuffixHash: true
 
 resources:
-  - deployment.yaml
+  - deployment-prometheus.yaml
+  - deployment-grafana.yaml
+  - service-prometheus.yaml
+  - service-grafana.yaml
   - ingress.yaml
-  - service.yaml
-  - pod.yaml

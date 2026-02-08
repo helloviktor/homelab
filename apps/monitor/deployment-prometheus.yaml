@@ -13,7 +13,7 @@ spec:
         app: prometheus
     spec:
       containers:
-        - image: prom/prometheus:main
+        - image: prom/prometheus:v3.9.1
           name: prometheus
           resources:
             requests:
@@ -29,10 +29,10 @@ spec:
             - --config.file
             - /mnt/prometheus.yaml
           volumeMounts:
-            - name: prometheus-config-volume
+            - name: prometheus-config
               mountPath: /mnt/
               readOnly: true
       volumes:
-        - name: prometheus-config-volume
+        - name: prometheus-config
           configMap:
             name: prometheus-config
