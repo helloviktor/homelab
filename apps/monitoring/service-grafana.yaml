@@ -6,5 +6,5 @@ spec:
   selector:
     app: grafana
   ports:
-    - port: 80
-      targetPort: grafana-port
+    - port: 3000
+      targetPort: 3000

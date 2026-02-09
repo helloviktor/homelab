@@ -7,5 +7,5 @@ spec:
   selector:
     app: cloudflared
   ports:
-    - port: 80
-      targetPort: metrics-port
+    - port: 2000
+      targetPort: 2000
