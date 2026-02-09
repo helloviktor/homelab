@@ -24,6 +24,7 @@ spec:
               memory: 1Gi
           ports:
             - containerPort: 3000
+              name: grafana-port
           volumeMounts:
             - name: grafana-config
               mountPath: /etc/grafana/
