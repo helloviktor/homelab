@@ -7,12 +7,22 @@ configMapGenerator:
   - name: prometheus-config
     files:
       - prometheus.yaml
+
   - name: grafana-config
     files:
       - grafana/grafana.ini
+
   - name: grafana-datasources
     files:
       - grafana/datasources.yaml
+
+  - name: grafana-dashboards
+    files:
+      - grafana/dashboards/traefik-rev9.json
+
+  - name: grafana-provision
+    files:
+      - grafana/provision.yaml
 
 generatorOptions:
   disableNameSuffixHash: true
