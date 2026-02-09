@@ -28,6 +28,7 @@ spec:
               cpu: "500m"
           ports:
             - containerPort: 5432
+              name: pg-port
           volumeMounts:
             - name: postgres-scripts
               mountPath: /docker-entrypoint-initdb.d
