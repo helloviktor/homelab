@@ -24,6 +24,7 @@ spec:
               cpu: "500m"
           ports:
             - containerPort: 9090
+              name: prometheus-port
           command:
             - prometheus
             - --config.file

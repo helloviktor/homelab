@@ -7,4 +7,4 @@ spec:
     app: grafana
   ports:
     - port: 80
-      targetPort: 3000
+      targetPort: grafana-port
