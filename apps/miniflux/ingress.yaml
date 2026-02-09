@@ -15,8 +15,7 @@ spec:
       services:
         - kind: Service
           name: miniflux
-          namespace: default
           passHostHeader: true
-          port: 8080
+          port: 80
       middlewares:
         - name: rate-limit
