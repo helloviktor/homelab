@@ -17,5 +17,3 @@ spec:
           name: miniflux
           passHostHeader: true
           port: 80
-      middlewares:
-        - name: rate-limit
