@@ -28,6 +28,9 @@ spec:
             - name: grafana-config
               mountPath: /etc/grafana/
               readOnly: true
+            - name: grafana-datasources
+              mountPath: /etc/grafana/provisioning/datasources/
+              readOnly: true
           readinessProbe:
             failureThreshold: 3
             httpGet:
@@ -50,3 +53,6 @@ spec:
         - name: grafana-config
           configMap:
             name: grafana-config
+        - name: grafana-datasources
+          configMap:
+            name: grafana-datasources
