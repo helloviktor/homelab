@@ -12,4 +12,4 @@ scrape_configs:
     metrics_path: /metrics
     scheme: http
     static_configs:
-      - targets: ["cloudflared.edge.svc.cluster.local"]
+      - targets: ["cloudflared.edge.svc.cluster.local:2000"]

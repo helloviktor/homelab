@@ -27,7 +27,6 @@ spec:
                 name: tunnel-secrets
           ports:
             - containerPort: 2000
-              name: metrics-port
           command:
             - cloudflared
             - tunnel

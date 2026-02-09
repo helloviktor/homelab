@@ -16,4 +16,4 @@ spec:
         - kind: Service
           name: grafana
           passHostHeader: true
-          port: 80
+          port: 3000

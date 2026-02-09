@@ -8,4 +8,4 @@ spec:
     app: postgres
   ports:
     - port: 5432
-      targetPort: pg-port
+      targetPort: 5432

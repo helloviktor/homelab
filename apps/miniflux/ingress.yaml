@@ -16,4 +16,4 @@ spec:
         - kind: Service
           name: miniflux
           passHostHeader: true
-          port: 80
+          port: 8080
