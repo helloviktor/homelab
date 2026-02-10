@@ -20,9 +20,9 @@ configMapGenerator:
     files:
       - grafana/dashboards/traefik-rev9.json
 
-  - name: grafana-provision
+  - name: grafana-dashboard-config
     files:
-      - grafana/provision.yaml
+      - grafana/dashboards.yaml
 
 generatorOptions:
   disableNameSuffixHash: true
