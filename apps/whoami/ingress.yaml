@@ -15,6 +15,5 @@ spec:
       services:
         - kind: Service
           name: whoami
-          namespace: default
           passHostHeader: true
           port: 80
