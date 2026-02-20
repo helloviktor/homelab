@@ -6,13 +6,13 @@ namespace: monitoring
 configMapGenerator:
   - name: prometheus-config
     files:
-      - prometheus.yaml
+      - prometheus/prometheus.yaml
 
   - name: grafana-config
     files:
       - grafana/grafana.ini
 
-  - name: grafana-datasources
+  - name: grafana-datasource-config
     files:
       - grafana/datasources.yaml
 
