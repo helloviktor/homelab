@@ -24,8 +24,6 @@ services:
     networks:
       - proxy
       - edge
-    ports:
-      - "80:80"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     command:
@@ -35,7 +33,6 @@ services:
       - "--providers.docker.network=proxy"
       - "--log.level=INFO"
       - "--accesslog=true"
-      - "--metrics.prometheus=true"
     labels:
       - "traefik.enable=true"
 
@@ -69,28 +66,6 @@ services:
     networks:
       - proxy
       - app
-
-  actual:
-    image: ${ACTUAL_IMAGE}
-    container_name: actual
-    restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.actual.rule=Host(`${ACTUAL_URL}`)"
-      - "traefik.http.routers.actual.entrypoints=web"
-      - "traefik.http.services.actual.loadbalancer.server.port=5006"
-    volumes:
-      - actualdata:/data
-    networks:
-      - proxy
-    healthcheck:
-      test: [ 'CMD-SHELL', 'node src/scripts/health-check.js' ]
-      interval: 60s
-      timeout: 10s
-      retries: 3
-      start_period: 20s
 
   db:
     image: ${POSTGRES_IMAGE}
