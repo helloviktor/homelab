@@ -14,3 +14,4 @@ generatorOptions:
 resources:
   - deployment.yaml
   - service.yaml
+  - networkpolicy.yaml
