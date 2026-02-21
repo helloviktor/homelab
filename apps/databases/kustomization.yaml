@@ -13,9 +13,7 @@ configMapGenerator:
     files:
       - scripts/01-init-script.sh
 
-generatorOptions:
-  disableNameSuffixHash: true
-
 resources:
   - statefulset.yaml
   - service.yaml
+  - networkpolicy.yaml
