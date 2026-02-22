@@ -29,4 +29,6 @@ resources:
   - deployment-grafana.yaml
   - service-prometheus.yaml
   - service-grafana.yaml
+  - networkpolicy-prometheus.yaml
+  - networkpolicy-grafana.yaml
   - ingress.yaml
