@@ -39,3 +39,7 @@ spec:
       ports:
         - protocol: UDP
           port: 53
+    # necessary to read feeds
+    - ports:
+        - protocol: TCP
+          port: 443
