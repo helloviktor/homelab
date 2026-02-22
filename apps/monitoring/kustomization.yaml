@@ -24,9 +24,6 @@ configMapGenerator:
     files:
       - grafana/dashboards.yaml
 
-generatorOptions:
-  disableNameSuffixHash: true
-
 resources:
   - deployment-prometheus.yaml
   - deployment-grafana.yaml
