@@ -7,7 +7,7 @@ spec:
     - web
   routes:
     - kind: Rule
-      match: Host(`playground.hefler.dev`) && PathPrefix(`/monitor`)
+      match: Host(`monitor.hefler.dev`)
       observability:
         accessLogs: true
         metrics: true
