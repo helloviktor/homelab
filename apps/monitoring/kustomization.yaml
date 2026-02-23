@@ -19,6 +19,7 @@ configMapGenerator:
   - name: grafana-dashboards
     files:
       - grafana/dashboards/traefik-rev9.json
+      - grafana/dashboards/cloudflare-rev6.json
 
   - name: grafana-dashboard-config
     files:
