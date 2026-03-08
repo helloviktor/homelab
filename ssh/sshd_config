@@ -1,0 +1,28 @@
+Include /etc/ssh/sshd_config.d/*.conf
+Port 59386
+AddressFamily inet
+ListenAddress 0.0.0.0
+LogLevel VERBOSE
+PermitRootLogin no
+StrictModes yes
+MaxAuthTries 2
+MaxSessions 2
+LoginGraceTime 30
+AllowUsers debian
+PubkeyAuthentication yes
+AuthenticationMethods publickey
+AuthorizedKeysFile .ssh/authorized_keys
+PasswordAuthentication no
+PermitEmptyPasswords no
+KbdInteractiveAuthentication no
+UsePAM no
+AllowAgentForwarding no
+AllowTcpForwarding local
+X11Forwarding no
+PrintMotd no
+MaxStartups 3:30:10
+PermitTunnel no
+AcceptEnv LANG LC_* COLORTERM NO_COLOR
+Subsystem       sftp    /usr/lib/openssh/sftp-server
+ClientAliveInterval 60
+ClientAliveCountMax 2
