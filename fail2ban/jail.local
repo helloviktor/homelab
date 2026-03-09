@@ -1,0 +1,10 @@
+[sshd]
+enabled  = true
+port     = 59386
+filter   = sshd
+backend  = systemd
+logpath  = /var/log/secure  # still required, but ignored with systemd backend
+maxretry = 3
+bantime  = -1  # permanent ban
+findtime = 600
+action   = iptables[name=sshd, port=59386, protocol=tcp, blocktype=DROP]
