@@ -1,0 +1,19 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: linkding
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`bookmarks.hefler.dev`)
+      observability:
+        accessLogs: true
+        metrics: true
+        tracing: true
+      services:
+        - kind: Service
+          name: linkding
+          passHostHeader: true
+          port: 9090
