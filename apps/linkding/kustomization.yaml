@@ -3,6 +3,11 @@ kind: Kustomization
 
 namespace: linkding
 
+images:
+  - name: linkding
+    newName: ghcr.io/sissbruecker/linkding
+    newTag: 1.45.0-alpine
+
 configMapGenerator:
   - name: linkding
     envs:

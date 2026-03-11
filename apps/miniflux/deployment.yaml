@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: miniflux
-          image: miniflux/miniflux:2.2.16-distroless
+          image: miniflux
           resources:
             requests:
               memory: "64Mi"

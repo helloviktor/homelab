@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: linkding
-          image: ghcr.io/sissbruecker/linkding:1.45.0-alpine
+          image: linkding
           resources:
             requests:
               memory: "128Mi"
