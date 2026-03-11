@@ -13,3 +13,8 @@ scrape_configs:
     scheme: http
     static_configs:
       - targets: ["cloudflared.edge.svc.cluster.local:2000"]
+  - job_name: "node-exporter"
+    metrics_path: /metrics
+    scheme: http
+    static_configs:
+      - targets: ["node-exporter.monitoring.svc.cluster.local:9100"]
