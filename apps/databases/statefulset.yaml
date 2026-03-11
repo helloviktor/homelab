@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: postgres:18.2-trixie
+          image: postgres
           envFrom:
             - secretRef:
                 name: postgres-secrets
