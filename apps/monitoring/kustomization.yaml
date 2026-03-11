@@ -28,8 +28,11 @@ configMapGenerator:
 resources:
   - deployment-prometheus.yaml
   - deployment-grafana.yaml
+  - daemonset-node-exporter.yaml
   - service-prometheus.yaml
   - service-grafana.yaml
+  - service-node-exporter.yaml
   - networkpolicy-prometheus.yaml
   - networkpolicy-grafana.yaml
+  - networkpolicy-node-exporter.yaml
   - ingress.yaml

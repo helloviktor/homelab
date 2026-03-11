@@ -3,6 +3,7 @@ apiVersion: 1
 datasources:
   - name: Prometheus
     type: prometheus
+    uid: prometheus # Ensure dashboards refer to this
     access: proxy
     url: http://prometheus.monitoring.svc.cluster.local:9090
     jsonData:
