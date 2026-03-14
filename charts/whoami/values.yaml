@@ -1,0 +1,31 @@
+replicaCount: 1
+
+image:
+  repository: traefik/whoami
+  pullPolicy: IfNotPresent
+  tag: ""
+
+nameOverride: ""
+fullnameOverride: ""
+
+resources:
+  requests:
+    memory: "64Mi"
+    cpu: "250m"
+  limits:
+    memory: "128Mi"
+    cpu: "500m"
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingressRoute:
+  enabled: true
+  host: "" # REQUIRED: Set this to your domain (e.g., "example.com") for IngressRoute to be created
+  path: "" # Optional: Set to a path like "/whoami" or leave empty for root path
+  entryPoints:
+    - web
+  accessLogs: true
+  metrics: true
+  tracing: true

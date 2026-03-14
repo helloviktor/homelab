@@ -1,0 +1,27 @@
+🎉 Successfully installed {{ .Chart.Name }}!
+
+{{- if not .Values.ingressRoute.host }}
+
+⚠️  IMPORTANT: No hostname configured for IngressRoute!
+
+To access your whoami service, you must set the hostname:
+
+  helm upgrade {{ .Release.Name }} ./charts/whoami --set ingressRoute.host=your-domain.com
+
+Or create a values file:
+  ingressRoute:
+    host: your-domain.com
+
+Then apply the IngressRoute:
+  helm upgrade {{ .Release.Name }} ./charts/whoami -f values.yaml
+
+{{- else }}
+
+✅ IngressRoute configured for: {{ .Values.ingressRoute.host }}{{ .Values.ingressRoute.path }}
+
+Access your service at: https://{{ .Values.ingressRoute.host }}{{ .Values.ingressRoute.path }}
+
+{{- end }}
+
+For troubleshooting, check the pod status:
+  kubectl get pods -l app.kubernetes.io/instance={{ .Release.Name }}
