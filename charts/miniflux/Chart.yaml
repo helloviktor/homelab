@@ -1,0 +1,6 @@
+apiVersion: v2
+name: miniflux
+description: A simple Helm chart for Miniflux. Requires ingressRoute.host to be set for IngressRoute creation.
+type: application
+version: 0.1.0
+appVersion: "2.2.16-distroless"
