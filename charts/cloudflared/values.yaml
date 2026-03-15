@@ -33,6 +33,3 @@ livenessProbe:
   initialDelaySeconds: 10
   periodSeconds: 10
   failureThreshold: 1
-
-networkPolicy:
-  enabled: true
