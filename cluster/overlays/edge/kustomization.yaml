@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: edge
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+secretGenerator:
+  - name: tunnel-secrets
+    envs:
+      - .env
+
+helmCharts:
+  - name: cloudflared
+    repo: https://helloviktor.github.io/charts
+    version: 0.1.0
+    releaseName: cloudflared
+    namespace: edge
+    valuesInline:
+      secret:
+        create: false
+        name: tunnel-secrets
