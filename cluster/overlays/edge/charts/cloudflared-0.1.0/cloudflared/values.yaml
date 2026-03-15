@@ -1,0 +1,35 @@
+replicaCount: 1
+
+image:
+  repository: cloudflare/cloudflared
+  pullPolicy: IfNotPresent
+  tag: ""
+
+nameOverride: ""
+fullnameOverride: ""
+
+secret:
+  create: false
+  name: tunnel-secrets
+  envFile: "" # Use --set-file secret.envFile=path/to/.env when secret.create=true
+
+resources:
+  requests:
+    memory: "64Mi"
+    cpu: "250m"
+  limits:
+    memory: "128Mi"
+    cpu: "500m"
+
+service:
+  type: ClusterIP
+  port: 2000
+
+cloudflared:
+  protocol: http2
+  logLevel: info
+
+livenessProbe:
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  failureThreshold: 1

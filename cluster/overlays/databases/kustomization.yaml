@@ -1,0 +1,26 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: databases
+
+resources:
+  - networkpolicy.yaml
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+secretGenerator:
+  - name: postgres-secrets
+    envs:
+      - .env
+
+helmCharts:
+  - name: postgres
+    repo: https://helloviktor.github.io/charts
+    version: 0.1.0
+    releaseName: postgres
+    namespace: databases
+    valuesInline:
+      secret:
+        create: false
+        name: postgres-secrets
