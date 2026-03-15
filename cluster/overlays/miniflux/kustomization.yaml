@@ -3,9 +3,6 @@ kind: Kustomization
 
 namespace: miniflux
 
-resources:
-  - networkpolicy.yaml
-
 generatorOptions:
   disableNameSuffixHash: true
 
