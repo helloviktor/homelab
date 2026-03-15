@@ -3,6 +3,9 @@ kind: Kustomization
 
 namespace: linkding
 
+resources:
+  - networkpolicy.yaml
+
 generatorOptions:
   disableNameSuffixHash: true
 
