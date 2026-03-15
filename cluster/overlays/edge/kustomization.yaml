@@ -3,6 +3,9 @@ kind: Kustomization
 
 namespace: edge
 
+resources:
+  - networkpolicy.yaml
+
 generatorOptions:
   disableNameSuffixHash: true
 

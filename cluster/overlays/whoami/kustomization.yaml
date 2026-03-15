@@ -3,6 +3,9 @@ kind: Kustomization
 
 namespace: whoami
 
+resources:
+  - networkpolicy.yaml
+
 helmCharts:
   - name: whoami
     repo: https://helloviktor.github.io/charts
