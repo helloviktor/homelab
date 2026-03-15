@@ -9,10 +9,35 @@ resources:
 generatorOptions:
   disableNameSuffixHash: true
 
+configMapGenerator:
+  - name: postgres-init-script
+    files:
+      - scripts/01-init.sh
+
 secretGenerator:
   - name: postgres-secrets
     envs:
       - .env
+
+patches:
+  - target:
+      group: apps
+      version: v1
+      kind: StatefulSet
+      name: postgres
+    patch: |-
+      - op: add
+        path: /spec/template/spec/volumes
+        value:
+          - name: postgres-init-script
+            configMap:
+              name: postgres-init-script
+      - op: add
+        path: /spec/template/spec/containers/0/volumeMounts/0
+        value:
+          name: postgres-init-script
+          mountPath: /docker-entrypoint-initdb.d/01-init.sh
+          subPath: 01-init.sh
 
 helmCharts:
   - name: postgres
