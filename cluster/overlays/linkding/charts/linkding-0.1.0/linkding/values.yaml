@@ -1,0 +1,36 @@
+replicaCount: 1
+
+image:
+  repository: ghcr.io/sissbruecker/linkding
+  pullPolicy: IfNotPresent
+  tag: ""
+
+nameOverride: ""
+fullnameOverride: ""
+
+secret:
+  create: false
+  name: linkding-secrets
+  envFile: "" # Use --set-file secret.envFile=path/to/.env when secret.create=true
+
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "250m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+
+service:
+  type: ClusterIP
+  port: 9090
+
+ingressRoute:
+  enabled: true
+  host: "" # REQUIRED: Set this to your domain (e.g., "example.com") for IngressRoute to be created
+  path: "" # Optional: Set to a path like "/bookmarks" or leave empty for host root
+  entryPoints:
+    - web
+  accessLogs: true
+  metrics: true
+  tracing: true

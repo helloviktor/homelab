@@ -1,0 +1,6 @@
+apiVersion: v2
+appVersion: 18.2-trixie
+description: A Helm chart for PostgreSQL.
+name: postgres
+type: application
+version: 0.1.0

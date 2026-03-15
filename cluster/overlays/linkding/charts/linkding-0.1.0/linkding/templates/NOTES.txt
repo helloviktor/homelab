@@ -1,0 +1,29 @@
+Successfully installed {{ .Chart.Name }}!
+
+{{- if .Values.secret.create }}
+Kubernetes Secret creation is enabled.
+Using Secret: {{ include "linkding.secretName" . }}
+{{- else }}
+Using existing Secret: {{ include "linkding.secretName" . }}
+To create the Secret from an env file with Helm, run:
+
+  helm upgrade --install {{ .Release.Name }} ./charts/linkding \
+    --set secret.create=true \
+    --set-file secret.envFile=path/to/.env
+{{- end }}
+
+{{- if not .Values.ingressRoute.host }}
+IMPORTANT: No hostname configured for IngressRoute.
+
+Set the hostname to create the IngressRoute:
+
+  helm upgrade {{ .Release.Name }} ./charts/linkding --set ingressRoute.host=your-domain.com
+
+Or use a values file:
+  ingressRoute:
+    host: your-domain.com
+{{- else }}
+IngressRoute configured for: {{ .Values.ingressRoute.host }}{{ .Values.ingressRoute.path }}
+
+Access URL: https://{{ .Values.ingressRoute.host }}{{ .Values.ingressRoute.path }}
+{{- end }}
