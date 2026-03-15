@@ -1,0 +1,35 @@
+replicaCount: 1
+
+image:
+  repository: postgres
+  pullPolicy: IfNotPresent
+  tag: ""
+
+nameOverride: ""
+fullnameOverride: ""
+
+secret:
+  create: false
+  name: postgres-secrets
+  envFile: "" # Use --set-file secret.envFile=path/to/.env when secret.create=true
+
+resources:
+  requests:
+    memory: "64Mi"
+    cpu: "250m"
+  limits:
+    memory: "128Mi"
+    cpu: "500m"
+
+service:
+  port: 5432
+
+persistence:
+  accessMode: ReadWriteOncePod
+  size: 1Gi
+  mountPath: /var/lib/postgresql/18/docker
+
+livenessProbe:
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  failureThreshold: 1

@@ -1,0 +1,16 @@
+Successfully installed {{ .Chart.Name }}!
+
+{{- if .Values.secret.create }}
+Kubernetes Secret creation is enabled.
+Using Secret: {{ include "cloudflared.secretName" . }}
+{{- else }}
+Using existing Secret: {{ include "cloudflared.secretName" . }}
+To create the Secret from an env file with Helm, run:
+
+  helm upgrade --install {{ .Release.Name }} ./charts/cloudflared \
+    --set secret.create=true \
+    --set-file secret.envFile=path/to/.env
+{{- end }}
+
+Check rollout:
+  kubectl get pods -l app.kubernetes.io/instance={{ .Release.Name }}

@@ -1,0 +1,7 @@
+apiVersion: v2
+appVersion: 1.45.0-alpine
+description: A simple Helm chart for Linkding. Requires ingressRoute.host to be set
+  for IngressRoute creation.
+name: linkding
+type: application
+version: 0.1.0
