@@ -3,7 +3,10 @@ kind: NetworkPolicy
 metadata:
   name: postgres
 spec:
-  podSelector: {}
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: postgres
+      app.kubernetes.io/instance: postgres
   policyTypes:
     - Ingress
     - Egress
@@ -14,17 +17,13 @@ spec:
               kubernetes.io/metadata.name: miniflux
           podSelector:
             matchLabels:
-              app: miniflux
-      ports:
-        - protocol: TCP
-          port: 5432
-    - from:
+              app.kubernetes.io/name: miniflux
         - namespaceSelector:
             matchLabels:
               kubernetes.io/metadata.name: linkding
           podSelector:
             matchLabels:
-              app: linkding
+              app.kubernetes.io/name: linkding
       ports:
         - protocol: TCP
           port: 5432
@@ -38,4 +37,6 @@ spec:
               k8s-app: kube-dns
       ports:
         - protocol: UDP
+          port: 53
+        - protocol: TCP
           port: 53

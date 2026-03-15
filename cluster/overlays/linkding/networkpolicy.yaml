@@ -3,7 +3,10 @@ kind: NetworkPolicy
 metadata:
   name: linkding
 spec:
-  podSelector: {}
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: linkding
+      app.kubernetes.io/instance: linkding
   policyTypes:
     - Ingress
     - Egress
@@ -22,16 +25,6 @@ spec:
     - to:
         - namespaceSelector:
             matchLabels:
-              kubernetes.io/metadata.name: databases
-          podSelector:
-            matchLabels:
-              app: postgres
-      ports:
-        - protocol: TCP
-          port: 5432
-    - to:
-        - namespaceSelector:
-            matchLabels:
               kubernetes.io/metadata.name: kube-system
           podSelector:
             matchLabels:
@@ -39,7 +32,20 @@ spec:
       ports:
         - protocol: UDP
           port: 53
-    # necessary to read metadata
+        - protocol: TCP
+          port: 53
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: databases
+          podSelector:
+            matchLabels:
+              app.kubernetes.io/name: postgres
+              app.kubernetes.io/instance: postgres
+      ports:
+        - protocol: TCP
+          port: 5432
+    # Allow outbound HTTPS for external links and integrations.
     - ports:
         - protocol: TCP
           port: 443
