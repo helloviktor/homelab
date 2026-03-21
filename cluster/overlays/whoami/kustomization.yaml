@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: whoami
 
 resources:
+  - namespace.yaml
   - networkpolicy.yaml
 
 helmCharts:

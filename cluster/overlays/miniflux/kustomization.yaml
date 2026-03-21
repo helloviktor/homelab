@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: miniflux
 
 resources:
+  - namespace.yaml
   - networkpolicy.yaml
 
 generatorOptions:
