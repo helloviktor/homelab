@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: edge
 
 resources:
+  - namespace.yaml
   - networkpolicy.yaml
 
 generatorOptions:
