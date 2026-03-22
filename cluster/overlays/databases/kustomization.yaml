@@ -20,33 +20,14 @@ secretGenerator:
     envs:
       - .env
 
-patches:
-  - target:
-      group: apps
-      version: v1
-      kind: StatefulSet
-      name: postgres
-    patch: |-
-      - op: add
-        path: /spec/template/spec/volumes
-        value:
-          - name: postgres-init-script
-            configMap:
-              name: postgres-init-script
-      - op: add
-        path: /spec/template/spec/containers/0/volumeMounts/0
-        value:
-          name: postgres-init-script
-          mountPath: /docker-entrypoint-initdb.d/01-init.sh
-          subPath: 01-init.sh
-
 helmCharts:
   - name: postgres
     repo: https://helloviktor.github.io/charts
-    version: 0.1.0
+    version: 0.3.0
     releaseName: postgres
     namespace: databases
     valuesInline:
       secret:
         create: false
         name: postgres-secrets
+      initScriptConfigMap: postgres-init-script
